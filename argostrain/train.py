@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -140,7 +141,7 @@ def train(
             "spm_train",
             "--input=run/split_data/all.txt",
             "--model_prefix=run/sentencepiece",
-            "--vocab_size=50000",
+            f"--vocab_size={os.getenv('VOCAB_SIZE', 32000)}",
             "--character_coverage=0.9995",
             "--input_sentence_size=1000000",
             "--shuffle_input_sentence=true",
